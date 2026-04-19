@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Mili 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: 'Arial', sans-serif;
+    color: white;
+  }
+
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .carta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 600px;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.2);
+    animation: fadeIn 2s ease;
+  }
+
+  h1 {
+    color: #ff4da6;
+  }
+
+  p {
+    margin: 15px 0;
+  }
+
+  .firma {
+    margin-top: 30px;
+    font-style: italic;
+    color: #ff4da6;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+  }
+</style>
+</head>
+
+<body>
+
+<canvas id="space"></canvas>
+
+<div class="carta">
+  <h1>Para vos, Mili 💖</h1>
+
+  <p>
+    No sé cómo explicarlo bien… pero desde que apareciste, algo en mí cambió.
+  </p>
+
+  <p>
+    Empecé a pensar en vos sin darme cuenta, a sonreír solo recordándote…  
+    y a sentir que, de alguna forma, todo es un poco mejor cuando estás.
+  </p>
+
+  <p>
+    No es solo lo linda que sos… es tu forma de ser, tu energía,  
+    eso que tenés que no se puede explicar pero se siente fuerte.
+  </p>
+
+  <p>
+    Me hacés bien, de verdad.  
+    Y en un mundo donde todo va tan rápido… encontrarte fue como frenar  
+    y darme cuenta de lo que realmente importa.
+  </p>
+
+  <p>
+    No sé qué va a pasar mañana… pero sí sé lo que siento hoy.  
+    Y hoy, lo que siento… es que te amo.
+  </p>
+
+  <p>
+    Te amo, Mili… y no es algo que diga por decir.  
+    Es algo que me nace, que me sale solo…  
+    y que cada día crece un poco más 💫
+  </p>
+
+  <p class="firma">
+    Atentamente, tu amor Axel 💖
+  </p>
+
+</div>
+
+<script>
+  const canvas = document.getElementById("space");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+
+  for (let i = 0; i < 150; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.5,
+      speed: Math.random() * 0.5 + 0.2
+    });
+  }
+
+  function draw() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "white";
+
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      p.y += p.speed;
+
+      if (p.y > canvas.height) {
+        p.y = 0;
+        p.x = Math.random() * canvas.width;
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+</body>
+</html>
